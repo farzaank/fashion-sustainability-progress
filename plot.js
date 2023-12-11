@@ -164,11 +164,16 @@ d3.csv("path_to_your_csv.csv").then(function (data) {
 
 	// X scale and axis
 	const x = d3.scaleLinear().domain([2019, 2023]).range([0, width]);
+
 	svg
 		.append("g")
 		.attr("transform", `translate(0,${height})`)
-		.call(d3.axisBottom(x).tickFormat(d3.format("d")));
-
+		.call(
+			d3
+				.axisBottom(x)
+				.ticks(5) // Explicitly setting 5 ticks for 5 years
+				.tickFormat(d3.format("d"))
+		);
 	// Y scale and axis
 	const y = d3
 		.scaleLinear()
